@@ -1,120 +1,87 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Real-Time Chat App</title>
+    <title>Real-Time Chat App - README</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        #chat-box {
-            height: 400px;
-            overflow-y: scroll;
-            border: 1px solid #ccc;
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f8f9fa;
+        }
+        h1, h2, h3 {
+            color: #0d6efd;
+        }
+        pre {
+            background: #f1f1f1;
             padding: 10px;
-            background: #f9f9f9;
-        }
-        .message {
-            margin-bottom: 10px;
-        }
-        .message .user {
-            font-weight: bold;
+            border-radius: 5px;
+            overflow-x: auto;
         }
     </style>
 </head>
-<body class="bg-light">
+<body>
+<div class="container">
+    <h1 class="mb-4">💬 Real-Time Chat Application</h1>
 
-<div class="container py-5">
-    <div class="card shadow-lg">
-        <div class="card-header text-center bg-primary text-white">
-            <h3>💬 Real-Time Chat Application</h3>
-        </div>
-        <div class="card-body">
-            <div id="username-section" class="mb-4">
-                <label for="username" class="form-label">Enter your name to join the chat:</label>
-                <input type="text" id="username" class="form-control mb-2" placeholder="Your name">
-                <button class="btn btn-success w-100" onclick="connect()">Join Chat</button>
-            </div>
+    <p>This is a web-based real-time chat application built with <strong>Spring Boot</strong>, <strong>WebSockets</strong>, <strong>STOMP</strong>, <strong>SockJS</strong>, <strong>Thymeleaf</strong>, and <strong>Bootstrap 5</strong>.</p>
 
-            <div id="chat-section" style="display: none;">
-                <div id="chat-box" class="mb-3"></div>
-                <div class="input-group">
-                    <input type="text" id="message" class="form-control" placeholder="Type your message here..." onkeyup="checkEnter(event)">
-                    <button class="btn btn-primary" onclick="sendMessage()">Send</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h2>🚀 Features</h2>
+    <ul>
+        <li>Real-time chat using WebSocket protocol</li>
+        <li>STOMP messaging support</li>
+        <li>Simple and responsive UI</li>
+        <li>User join notifications</li>
+        <li>Auto-scrolling chat box</li>
+    </ul>
+
+    <h2>🖥️ Technologies Used</h2>
+    <ul>
+        <li>Java + Spring Boot</li>
+        <li>Thymeleaf</li>
+        <li>WebSocket, STOMP, SockJS</li>
+        <li>Bootstrap 5</li>
+        <li>HTML, CSS, JavaScript</li>
+    </ul>
+
+    <h2>📸 Screenshot</h2>
+    <p>You can add a screenshot by replacing the path below:</p>
+    <img src="path/to/screenshot.png" alt="Chat App Screenshot" class="img-fluid rounded shadow">
+
+    <h2>🛠️ How to Run</h2>
+    <ol>
+        <li><strong>Clone the repository</strong>:
+            <pre><code>git clone https://github.com/yourusername/your-chat-app.git
+cd your-chat-app</code></pre>
+        </li>
+        <li><strong>Run the Spring Boot application</strong>:
+            <pre><code>./mvnw spring-boot:run</code></pre>
+        </li>
+        <li><strong>Open your browser</strong> and go to:
+            <pre><code>http://localhost:8080</code></pre>
+        </li>
+    </ol>
+
+    <h2>📂 Project Structure</h2>
+    <pre><code>src
+├── main
+│   ├── java
+│   │   └── com.example.chat
+│   │       ├── controller
+│   │       ├── model
+│   │       ├── config
+│   │       └── ChatApplication.java
+│   └── resources
+│       ├── static
+│       ├── templates
+│       └── application.properties</code></pre>
+
+    <h2>🙌 Contribution</h2>
+    <p>Feel free to fork the project, open issues, or submit pull requests.</p>
+
+    <h2>📄 License</h2>
+    <p>This project is licensed under the MIT License.</p>
 </div>
-
-<!-- STOMP & SockJS -->
-<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.6.1/dist/sockjs.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
-
-<script>
-    let stompClient = null;
-    let username = null;
-
-    function connect() {
-        username = document.getElementById("username").value.trim();
-        if (!username) {
-            alert("Please enter a valid name.");
-            return;
-        }
-
-        let socket = new SockJS('/ws');
-        stompClient = Stomp.over(socket);
-
-        stompClient.connect({}, function () {
-            document.getElementById("username-section").style.display = "none";
-            document.getElementById("chat-section").style.display = "block";
-
-            stompClient.subscribe('/topic/public', function (messageOutput) {
-                let message = JSON.parse(messageOutput.body);
-                showMessage(message);
-            });
-
-            stompClient.send("/app/chat.sendMessage", {}, JSON.stringify({
-                sender: username,
-                content: username + " joined the chat",
-                type: 'JOIN'
-            }));
-        });
-    }
-
-    function sendMessage() {
-        let messageInput = document.getElementById("message");
-        let messageContent = messageInput.value.trim();
-        if (messageContent && stompClient) {
-            let chatMessage = {
-                sender: username,
-                content: messageContent,
-                type: 'CHAT'
-            };
-            stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
-            messageInput.value = '';
-        }
-    }
-
-    function checkEnter(event) {
-        if (event.key === "Enter") {
-            sendMessage();
-        }
-    }
-
-    function showMessage(message) {
-        let chatBox = document.getElementById("chat-box");
-        let msgElement = document.createElement("div");
-        msgElement.classList.add("message");
-
-        if (message.type === 'JOIN') {
-            msgElement.innerHTML = `<em>${message.content}</em>`;
-        } else {
-            msgElement.innerHTML = `<span class="user">${message.sender}:</span> ${message.content}`;
-        }
-
-        chatBox.appendChild(msgElement);
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-</script>
-
 </body>
 </html>
