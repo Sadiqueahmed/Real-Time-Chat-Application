@@ -1,87 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Real-Time Chat App - README</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #f8f9fa;
-        }
-        h1, h2, h3 {
-            color: #0d6efd;
-        }
-        pre {
-            background: #f1f1f1;
-            padding: 10px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <h1 class="mb-4">💬 Real-Time Chat Application</h1>
+# 🗨️ Real-Time Chat Application
 
-    <p>This is a web-based real-time chat application built with <strong>Spring Boot</strong>, <strong>WebSockets</strong>, <strong>STOMP</strong>, <strong>SockJS</strong>, <strong>Thymeleaf</strong>, and <strong>Bootstrap 5</strong>.</p>
+This project is a real-time chat application built with Spring Boot, WebSockets, and Thymeleaf. It allows multiple users to communicate instantly through a web interface.
 
-    <h2>🚀 Features</h2>
-    <ul>
-        <li>Real-time chat using WebSocket protocol</li>
-        <li>STOMP messaging support</li>
-        <li>Simple and responsive UI</li>
-        <li>User join notifications</li>
-        <li>Auto-scrolling chat box</li>
-    </ul>
+## 🚀 Features
 
-    <h2>🖥️ Technologies Used</h2>
-    <ul>
-        <li>Java + Spring Boot</li>
-        <li>Thymeleaf</li>
-        <li>WebSocket, STOMP, SockJS</li>
-        <li>Bootstrap 5</li>
-        <li>HTML, CSS, JavaScript</li>
-    </ul>
+- Real-time messaging using WebSockets
+- User join/leave notifications
+- Responsive UI with Thymeleaf templates
+- Simple and intuitive user interface
 
-    <h2>📸 Screenshot</h2>
-    <p>You can add a screenshot by replacing the path below:</p>
-    <img src="path/to/screenshot.png" alt="Chat App Screenshot" class="img-fluid rounded shadow">
+## 🛠️ Technologies Used
 
-    <h2>🛠️ How to Run</h2>
-    <ol>
-        <li><strong>Clone the repository</strong>:
-            <pre><code>git clone https://github.com/yourusername/your-chat-app.git
-cd your-chat-app</code></pre>
-        </li>
-        <li><strong>Run the Spring Boot application</strong>:
-            <pre><code>./mvnw spring-boot:run</code></pre>
-        </li>
-        <li><strong>Open your browser</strong> and go to:
-            <pre><code>http://localhost:8080</code></pre>
-        </li>
-    </ol>
+- Java 17+
+- Spring Boot
+- WebSocket (STOMP protocol)
+- Thymeleaf
+- SockJS and STOMP.js
+- Maven
 
-    <h2>📂 Project Structure</h2>
-    <pre><code>src
-├── main
-│   ├── java
-│   │   └── com.example.chat
-│   │       ├── controller
-│   │       ├── model
-│   │       ├── config
-│   │       └── ChatApplication.java
-│   └── resources
-│       ├── static
-│       ├── templates
-│       └── application.properties</code></pre>
+## 📦 Getting Started
 
-    <h2>🙌 Contribution</h2>
-    <p>Feel free to fork the project, open issues, or submit pull requests.</p>
+### Prerequisites
 
-    <h2>📄 License</h2>
-    <p>This project is licensed under the MIT License.</p>
-</div>
-</body>
-</html>
+- Java 17 or higher
+- Maven
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/chat-app.git
+   cd chat-app
+2. Build the project:
+
+   ```bash
+   mvn clean install
+3. Run the application:
+   ```bash
+   mvn spring-boot:run
+
+4. Access the application at
+
+   ```bash
+   [git clone https://github.com/yourusername/chat-app.git
+   cd chat-app](http://localhost:8080/chat)
+
+### 🖼️ Screenshots
+
+### 🤝 Contributing
+    - Contributions are welcome! Please fork the repository and submit a pull request.
+
+
+### 📄 License
+    - This project is licensed under the MIT License.
+
+    
+---
+
+Feel free to customize the `README.md` file according to your project's specifics. If you need further assistance or have questions about any part of the implementation, feel free to ask!
+::contentReference[oaicite:86]{index=86}
+ 
+
